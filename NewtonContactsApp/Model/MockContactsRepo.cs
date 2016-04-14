@@ -134,6 +134,12 @@ namespace NewtonContactsApp.Model
                 "901-465468",
                 "112-45648465",
             };
+            var appdata = new List<string>
+            {
+                "http://www.abc.net.au/news/image/7074102-3x2-940x627.jpg",
+                "http://cdn.collider.com/wp-content/uploads/Venom-4.jpg"
+
+            };
             var contactList = new List<Contact>();
             Random rand = new Random();
             for (int i = 0; i < numContactsToGenerate; ++i)
@@ -148,6 +154,7 @@ namespace NewtonContactsApp.Model
                     Country = countries[(indexCounter - 1) % countries.Count],
                     EmailAddress = emails[(indexCounter - 1) % emails.Count],
                     PhoneNumber = phones[(indexCounter - 1) % phones.Count],
+                    AppData = appdata[(indexCounter - 1) % appdata.Count],
                     Index = indexCounter++
                 }
                 );

@@ -30,7 +30,7 @@ namespace NewtonContactsApp
         public ListViewPage()
         {
             this.InitializeComponent();
-            var repo = new ContactsRepo();
+            var repo = new MockContactsRepo();
             Contacts = repo.GetAll();
 
         }

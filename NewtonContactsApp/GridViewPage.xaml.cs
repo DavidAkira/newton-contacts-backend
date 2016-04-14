@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -34,11 +35,19 @@ namespace NewtonContactsApp
 
         private void gridViewMain_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Contact contact = (Contact)e.ClickedItem; 
+            Contact clickedContact = (Contact)e.ClickedItem;
+            imageDetail.Source = new BitmapImage(
+            new Uri(clickedContact.AppData, UriKind.Absolute));
             gridViewMain.Visibility = Visibility.Collapsed;
             gridViewDetail.Visibility = Visibility.Visible;
-            txtblockDetailName.Text = contact.Name;
-            txtblockDetailAddress.Text = contact.Address;
+            txtblockDetailName.Text = clickedContact.Name;
+            txtblockDetailAddress.Text = clickedContact.Address;
+            txtblockDetailMail.Text = clickedContact.EmailAddress;
+            txtblockDetailPhone.Text = clickedContact.PhoneNumber;
+            txtblockDetailCareOf.Text = clickedContact.CareOf;
+            txtblockDetailCity.Text = clickedContact.City;
+            txtblockDetailCountry.Text = clickedContact.Country;
+            txtblockDetailPostalCode.Text = clickedContact.PostalCode;
         }
     }
 }
