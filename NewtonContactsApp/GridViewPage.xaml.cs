@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewtonContactsApp.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,22 @@ namespace NewtonContactsApp
     /// </summary>
     public sealed partial class GridViewPage : Page
     {
+        private IList<Contact> Contacts { get; set; }
         public GridViewPage()
         {
             this.InitializeComponent();
+            MockContactsRepo repo = new MockContactsRepo();
+            
+            Contacts = repo.GetAll();
+        }
+
+        private void gridViewMain_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Contact contact = (Contact)e.ClickedItem; 
+            gridViewMain.Visibility = Visibility.Collapsed;
+            gridViewDetail.Visibility = Visibility.Visible;
+            txtblockDetailName.Text = contact.Name;
+            txtblockDetailAddress.Text = contact.Address;
         }
     }
 }

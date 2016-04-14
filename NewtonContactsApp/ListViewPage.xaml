@@ -33,7 +33,6 @@
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            
         </ListView>
 
         <Grid Name="gridDetail" Margin="20,0,0,0" Grid.Column="1" Grid.Row="0">

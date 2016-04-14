@@ -5,9 +5,69 @@
     xmlns:local="using:NewtonContactsApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:NewtonContactsApp.Model"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FFFFF1">
+        <ScrollViewer VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Disabled">
+            <Grid Name="gridViewMain">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
+                <GridView Grid.Column="0" Grid.Row="0" ItemsSource="{x:Bind Contacts}" IsItemClickEnabled="True" ItemClick="gridViewMain_ItemClick">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Contact">
+                            <StackPanel Padding="12" Orientation="Horizontal" Margin="8">
+                                <StackPanel Orientation="Vertical" Height="Auto" Width="Auto">
+                                    <Rectangle Height="100" Width="100"/>
+                                    <TextBlock Name="txtblockGridDisplayName" Text="{x:Bind Name}" />
+                                    <TextBlock Name="txtblockGridDisplayAddress" Text="{x:Bind Address}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
+                </ScrollViewer>
+        <Grid Visibility="Collapsed" Name="gridViewDetail" Margin="20,0,0,0" Grid.Column="1" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Name="imageDetail" Grid.Row="0" Grid.Column="0" Height="400" Width="400" />
+                <RelativePanel Grid.Row="0" Grid.Column="1">
+                    <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailName"
+                               RelativePanel.AlignTopWithPanel="True"/>
+                    <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailAddress"
+                               RelativePanel.Below="txtblockDetailName"     
+                               />
+                    <TextBlock Name="txtblockDetailPostalCode" FontSize="20" Margin="16,12,0,0" 
+                               RelativePanel.Below="txtblockDetailAddress"
+                               />
+                    <TextBlock Name="txtblockDetailCity" FontSize="20" Margin="16,12,0,0" 
+                               RelativePanel.RightOf="txtblockDetailPostalCode"
+                               RelativePanel.AlignVerticalCenterWith="txtblockDetailPostalCode"/>
+                    <TextBlock Name="txtblockDetailCareOf" FontSize="20" Margin="16,12,0,0" 
+                               RelativePanel.Below="txtblockDetailPostalCode"/>
+                    <TextBlock Name="txtblockDetailCountry" FontSize="20" Margin="16,12,0,0" 
+                               RelativePanel.Below="txtblockDetailCareOf"/>
+                    <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailPhone"
+                               RelativePanel.Below="txtblockDetailCountry"
+                               />
+                    <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailMail"
+                               RelativePanel.Below="txtblockDetailPhone"
+                               />
+                </RelativePanel>
+
+        </Grid>
     </Grid>
 </Page>
