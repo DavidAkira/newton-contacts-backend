@@ -28,7 +28,7 @@ namespace NewtonContactsApp
         public GridViewPage()
         {
             this.InitializeComponent();
-            Contacts = MainPage.DataBaseContacts;
+            Contacts = MockContactsRepo.DbInstance.GetAll();
         }
 
         private void gridViewMain_ItemClick(object sender, ItemClickEventArgs e)

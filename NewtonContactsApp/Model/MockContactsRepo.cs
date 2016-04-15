@@ -8,13 +8,27 @@ namespace NewtonContactsApp.Model
 {
     public class MockContactsRepo : IContactsRepository
     {
+        private static MockContactsRepo dbInstance ;
+
         private int numContactsToGenerate = 55;
         private int indexCounter = 1;
         private List<Contact> contacts;
 
-        public MockContactsRepo()
+        private MockContactsRepo()
         {
             contacts = CreateContacts();
+        }
+
+        public static MockContactsRepo DbInstance
+        {
+            get
+            {
+                if (dbInstance == null)
+                {
+                    dbInstance = new MockContactsRepo();
+                }
+                return dbInstance;
+            }
         }
 
         public int Create(Contact contact)

@@ -23,12 +23,9 @@ namespace NewtonContactsApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public static IList<Contact> DataBaseContacts { get; set; }
         public MainPage()
         {
             this.InitializeComponent();
-            MockContactsRepo repo = new MockContactsRepo();
-            DataBaseContacts = repo.GetAll();
         }
         private void BtnHamburger_OnClick(object sender, RoutedEventArgs e)
         {
