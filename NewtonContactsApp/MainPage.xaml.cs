@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using NewtonContactsApp.Model;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -22,9 +23,12 @@ namespace NewtonContactsApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static IList<Contact> DataBaseContacts { get; set; }
         public MainPage()
         {
             this.InitializeComponent();
+            MockContactsRepo repo = new MockContactsRepo();
+            DataBaseContacts = repo.GetAll();
         }
         private void BtnHamburger_OnClick(object sender, RoutedEventArgs e)
         {
