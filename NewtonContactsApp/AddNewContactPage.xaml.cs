@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewtonContactsApp.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,11 @@ namespace NewtonContactsApp
     /// </summary>
     public sealed partial class AddNewContactPage : Page
     {
+        MockContactsRepo Repo { get; set; }
         public AddNewContactPage()
         {
             this.InitializeComponent();
+            Repo = new MockContactsRepo();
         }
         private void BtnClear_OnClick(object sender, RoutedEventArgs e)
         {
@@ -36,6 +39,20 @@ namespace NewtonContactsApp
             txtboxName.Text = "";
             txtboxPhone.Text = "";
             txtboxPostalCode.Text = "";
+        }
+
+        private void btnAddNewPerson_Click(object sender, RoutedEventArgs e)
+        {
+            Repo.Create(new Contact {
+                Name = txtboxName.Text,
+                Address = txtboxAdress.Text,
+                City = txtboxCity.Text,
+                Country = txtboxCountry.Text,
+                CareOf = txtboxCareOf.Text,
+                PostalCode = txtboxPostalCode.Text,
+                PhoneNumber = txtboxPhone.Text,
+                EmailAddress = txtboxPhone.Text,
+            });
         }
     }
 }

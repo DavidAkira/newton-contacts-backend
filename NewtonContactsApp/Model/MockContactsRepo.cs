@@ -136,8 +136,9 @@ namespace NewtonContactsApp.Model
             };
             var appdata = new List<string>
             {
-                "http://www.abc.net.au/news/image/7074102-3x2-940x627.jpg",
-                "http://cdn.collider.com/wp-content/uploads/Venom-4.jpg"
+                "http://cdn.collider.com/wp-content/uploads/Venom-4.jpg",
+                "https://pbs.twimg.com/profile_images/577915663781482496/28tCoxPH.jpeg",
+                "https://c1.staticflickr.com/9/8086/8466271529_dc5c0a958f_z.jpg"
 
             };
             var contactList = new List<Contact>();

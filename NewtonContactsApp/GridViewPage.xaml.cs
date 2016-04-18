@@ -38,8 +38,10 @@ namespace NewtonContactsApp
             Contact clickedContact = (Contact)e.ClickedItem;
             imageDetail.Source = new BitmapImage(
             new Uri(clickedContact.AppData, UriKind.Absolute));
+
             gridViewMain.Visibility = Visibility.Collapsed;
             gridViewDetail.Visibility = Visibility.Visible;
+
             txtblockDetailName.Text = clickedContact.Name;
             txtblockDetailAddress.Text = clickedContact.Address;
             txtblockDetailMail.Text = clickedContact.EmailAddress;

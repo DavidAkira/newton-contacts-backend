@@ -29,7 +29,7 @@
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <TextBlock Name="txtblockGridDisplayName" Text="{x:Bind Name}" />
-                                    <TextBlock Name="txtblockGridDisplayAddress" Text="{x:Bind Address}" />
+                                    <TextBlock Name="txtblockGridDisplayEmail" Text="{x:Bind EmailAddress}" />
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
