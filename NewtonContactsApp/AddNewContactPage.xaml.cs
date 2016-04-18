@@ -1,5 +1,4 @@
-﻿using NewtonContactsApp.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using NewtonContactsApp.Model;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,11 +23,9 @@ namespace NewtonContactsApp
     /// </summary>
     public sealed partial class AddNewContactPage : Page
     {
-        MockContactsRepo Repo { get; set; }
         public AddNewContactPage()
         {
             this.InitializeComponent();
-            Repo = new MockContactsRepo();
         }
         private void BtnClear_OnClick(object sender, RoutedEventArgs e)
         {
@@ -41,18 +39,23 @@ namespace NewtonContactsApp
             txtboxPostalCode.Text = "";
         }
 
-        private void btnAddNewPerson_Click(object sender, RoutedEventArgs e)
+        private void BtnAddNewPerson_OnClick(object sender, RoutedEventArgs e)
         {
-            Repo.Create(new Contact {
+            Contact newContact = new Contact
+            {
                 Name = txtboxName.Text,
                 Address = txtboxAdress.Text,
+                CareOf = txtboxCareOf.Text,
                 City = txtboxCity.Text,
                 Country = txtboxCountry.Text,
-                CareOf = txtboxCareOf.Text,
-                PostalCode = txtboxPostalCode.Text,
+                EmailAddress = txtboxMail.Text,
                 PhoneNumber = txtboxPhone.Text,
-                EmailAddress = txtboxPhone.Text,
-            });
+                PostalCode = txtboxPostalCode.Text,
+                AppData = "http://images.fun.com/products/20244/1-1/spider-man-masks-pack-of-8.jpg"
+
+            };
+            int returnedId = MockContactsRepo.DbInstance.Create(newContact);
+            txtReturnedvalue.Text = returnedId.ToString();
         }
     }
 }

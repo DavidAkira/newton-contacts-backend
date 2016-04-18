@@ -7,13 +7,47 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    
     <Grid Background="#FFFFF1">
+       <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1024" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="btnHamburger.(Visibility)" Value="Collapsed" />
+                        <Setter Target="splitviewMenu.(IsPaneOpen)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Tablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="splitviewMenu.(DisplayMode)" Value="CompactInline" />
+                        <Setter Target="splitviewMenu.(IsPaneOpen)" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Mobile">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="320" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="splitviewMenu.(DisplayMode)" Value="Overlay" />
+                        <Setter Target="splitviewMenu.(IsPaneOpen)" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+       </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <RelativePanel Width="Auto" Background="#5A7B6C">
-            <Button Name="btnHamburger" Background="#5A7B6C" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="24" Click="BtnHamburger_OnClick" />
+            <Button Visibility="Visible" Name="btnHamburger" Background="#5A7B6C" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="24" Click="BtnHamburger_OnClick" />
             <Button Name="btnBack" Background="#5A7B6C" RelativePanel.RightOf="btnHamburger" FontFamily="Segoe MDL2 Assets" Content="&#xE0C4;" FontSize="24" Click="BtnBack_OnClick"/>
             <TextBox Name="txtboxSearch" Width="150" FontSize="18" RelativePanel.LeftOf="btnSearch" PlaceholderText="Search"></TextBox>
             <Button Name="btnSearch" Background="#5A7B6C" RelativePanel.AlignRightWithPanel="True" FontFamily="Segoe MDL2 Assets" Content="&#xE11A;" FontSize="24" Click="BtnSearch_OnClick" />

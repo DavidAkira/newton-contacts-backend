@@ -36,7 +36,7 @@
                     </GridView.ItemTemplate>
                 </GridView>
             </Grid>
-                </ScrollViewer>
+        </ScrollViewer>
         <Grid Visibility="Collapsed" Name="gridViewDetail" Margin="20,0,0,0" Grid.Column="1" Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

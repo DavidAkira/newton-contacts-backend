@@ -30,13 +30,13 @@ namespace NewtonContactsApp
         public ListViewPage()
         {
             this.InitializeComponent();
-            var repo = new MockContactsRepo();
-            Contacts = repo.GetAll();
+            Contacts = MockContactsRepo.DbInstance.GetAll();
 
         }
 
         private void ListViewPage_OnLoaded(object sender, RoutedEventArgs e)
         {
+            //Contacts = MainPage.DataBase.GetAll();
             //Ladda in alla kontakter
         }
 
