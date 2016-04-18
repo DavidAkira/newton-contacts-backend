@@ -13,7 +13,7 @@
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1024" />
+                        <AdaptiveTrigger MinWindowWidth="1200" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="btnHamburger.(Visibility)" Value="Collapsed" />
@@ -23,7 +23,7 @@
 
                 <VisualState x:Name="Tablet">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
+                        <AdaptiveTrigger MinWindowWidth="768" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="splitviewMenu.(DisplayMode)" Value="CompactInline" />
@@ -33,7 +33,7 @@
 
                 <VisualState x:Name="Mobile">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="320" />
+                        <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="splitviewMenu.(DisplayMode)" Value="Overlay" />

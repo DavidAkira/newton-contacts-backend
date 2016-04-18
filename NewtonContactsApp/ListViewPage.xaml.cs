@@ -36,8 +36,7 @@ namespace NewtonContactsApp
 
         private void ListViewPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            //Contacts = MainPage.DataBase.GetAll();
-            //Ladda in alla kontakter
+
         }
 
         private void ListViewMaster_OnItemClick(object sender, ItemClickEventArgs e)

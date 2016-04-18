@@ -70,7 +70,9 @@
                     <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailMail"
                                RelativePanel.Below="txtblockDetailPhone"
                                />
-                </RelativePanel>
+                <Button RelativePanel.Below="txtblockDetailMail" Content="Remove" Name="btnRemove" Click="btnRemove_Click" />
+                <Button RelativePanel.RightOf="btnRemove" RelativePanel.AlignVerticalCenterWith="btnRemove" Content="Edit" Name="btnEdit" Click="btnEdit_Click" />
+            </RelativePanel>
 
         </Grid>
     </Grid>

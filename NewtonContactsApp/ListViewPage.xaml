@@ -10,6 +10,43 @@
     mc:Ignorable="d">
 
     <Grid Background="#FFFFF1"> 
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1200" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--<Setter Target="txtblockListPhone.(Visibility)" Value="Visible" />-->
+
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Tablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="768" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--<Setter Target="txtblockListPhone.(Visibility)" Value="Collapsed" />-->
+                        <Setter Target="RelativeInfoDetail.(Grid.Row)" Value="1" />
+                        <Setter Target="RelativeInfoDetail.(Grid.Column)" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Mobile">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="listViewMaster.(Visibility)" Value="Collapsed" />
+                        <Setter Target="RelativeInfoDetail.(Grid.Row)" Value="1" />
+                        <Setter Target="RelativeInfoDetail.(Grid.Column)" Value="0" />
+
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -18,39 +55,6 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1024" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="btnHamburger.(Visibility)" Value="Collapsed" />
-
-                    </VisualState.Setters>
-                </VisualState>
-
-                <VisualState x:Name="Tablet">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="txtblockListPhone.(Visibility)" Value="Collapsed" />
-
-                    </VisualState.Setters>
-                </VisualState>
-
-                <VisualState x:Name="Mobile">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="320" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="txtblockListMail.(Visibility)" Value="Collapsed" />
-
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
 
         <ListView Name="listViewMaster" ItemsSource="{x:Bind Contacts}" IsItemClickEnabled="True" ItemClick="ListViewMaster_OnItemClick">
             <ListView.ItemTemplate>
@@ -63,7 +67,6 @@
                         </Ellipse>
                         <TextBlock FontSize="20" Margin="16,0,0,0" Name="txtblockListName"  Text="{x:Bind Name}" />
                         <TextBlock FontSize="20" Margin="16,0,0,0"  Name="txtblockListPhone" Text="{x:Bind PhoneNumber}"/>
-                        <TextBlock FontSize="20" Margin="16,0,0,0"  Name="txtblockListMail" Text="{x:Bind EmailAddress}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -79,8 +82,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             
-                <Image Name="imageDetail" Grid.Row="0" Grid.Column="0" Height="400" Width="400" />
-            <RelativePanel Grid.Row="0" Grid.Column="1">
+                <Image Name="imageDetail" Grid.Row="0" Grid.Column="0" Height="300" Width="300" />
+            <RelativePanel Name="RelativeInfoDetail" Grid.Row="0" Grid.Column="1">
                 <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailName"
                            RelativePanel.AlignTopWithPanel="True"/>
                 <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailAddress"

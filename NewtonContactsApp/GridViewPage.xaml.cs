@@ -25,6 +25,7 @@ namespace NewtonContactsApp
     public sealed partial class GridViewPage : Page
     {
         private IList<Contact> Contacts { get; set; }
+        private int currentContact { get; set; }
         public GridViewPage()
         {
             this.InitializeComponent();
@@ -34,6 +35,7 @@ namespace NewtonContactsApp
         private void gridViewMain_ItemClick(object sender, ItemClickEventArgs e)
         {
             Contact clickedContact = (Contact)e.ClickedItem;
+            currentContact = clickedContact.Index;
             imageDetail.Source = new BitmapImage(
             new Uri(clickedContact.AppData, UriKind.Absolute));
 
@@ -48,6 +50,18 @@ namespace NewtonContactsApp
             txtblockDetailCity.Text = clickedContact.City;
             txtblockDetailCountry.Text = clickedContact.Country;
             txtblockDetailPostalCode.Text = clickedContact.PostalCode;
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            MockContactsRepo.DbInstance.Delete(currentContact);
+
+            
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
