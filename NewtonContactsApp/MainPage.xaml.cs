@@ -27,6 +27,7 @@ namespace NewtonContactsApp
         public MainPage()
         {
             this.InitializeComponent();
+            frameMain.Navigate(typeof (GridViewPage));
         }
         private void BtnHamburger_OnClick(object sender, RoutedEventArgs e)
         {
@@ -38,13 +39,13 @@ namespace NewtonContactsApp
 
         }
 
-        private void BtnBack_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (frameMain.CanGoBack)
-            {
-                frameMain.GoBack();
-            }
-        }
+        //private void BtnBack_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    if (frameMain.CanGoBack)
+        //    {
+        //        frameMain.GoBack();
+        //    }
+        //}
 
         private void ListBoxMenu_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -55,6 +56,7 @@ namespace NewtonContactsApp
             else if (ListBoxItem2.IsSelected)
             {
                 frameMain.Navigate(typeof(ListViewPage));
+                
             }
             else if (ListBoxItem3.IsSelected)
             {

@@ -6,7 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:NewtonContactsApp.Model"
-    Loaded="ListViewPage_OnLoaded"
     mc:Ignorable="d">
 
     <Grid Background="#FFFFF1"> 
@@ -17,7 +16,6 @@
                         <AdaptiveTrigger MinWindowWidth="1200" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--<Setter Target="txtblockListPhone.(Visibility)" Value="Visible" />-->
 
                     </VisualState.Setters>
                 </VisualState>
@@ -27,9 +25,9 @@
                         <AdaptiveTrigger MinWindowWidth="768" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--<Setter Target="txtblockListPhone.(Visibility)" Value="Collapsed" />-->
-                        <Setter Target="RelativeInfoDetail.(Grid.Row)" Value="1" />
+                        <Setter Target="RelativeInfoDetail.(Grid.Row)" Value="2" />
                         <Setter Target="RelativeInfoDetail.(Grid.Column)" Value="0" />
+                        <Setter Target="listViewMaster.(Visibility)" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -39,9 +37,9 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="listViewMaster.(Visibility)" Value="Collapsed" />
-                        <Setter Target="RelativeInfoDetail.(Grid.Row)" Value="1" />
+                        <Setter Target="RelativeInfoDetail.(Grid.Row)" Value="2" />
                         <Setter Target="RelativeInfoDetail.(Grid.Column)" Value="0" />
-
+                        <Setter Target="btnBack.(Visibility)" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -76,14 +74,14 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            
-                <Image Name="imageDetail" Grid.Row="0" Grid.Column="0" Height="300" Width="300" />
-            <RelativePanel Name="RelativeInfoDetail" Grid.Row="0" Grid.Column="1">
+                <Image Name="imageDetail" Grid.Row="1" Grid.Column="0" Height="300" Width="300" />
+            <RelativePanel Name="RelativeInfoDetail" Grid.Row="1" Grid.Column="1">
                 <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailName"
                            RelativePanel.AlignTopWithPanel="True"/>
                 <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailAddress"
@@ -105,6 +103,8 @@
                 <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailMail"
                            RelativePanel.Below="txtblockDetailPhone"
                            />
+                <Button Visibility="Collapsed" RelativePanel.Below="txtblockDetailMail" Name="btnBack" Background="#5A7B6C" FontFamily="Segoe MDL2 Assets" Content="&#xE0C4;" FontSize="24" Click="BtnBack_OnClick" />
+
                 
             </RelativePanel>
            

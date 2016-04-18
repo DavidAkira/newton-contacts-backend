@@ -9,6 +9,40 @@
     mc:Ignorable="d">
 
     <Grid Background="#FFFFF1">
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+            <VisualState x:Name="Wide">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="1200" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+
+                </VisualState.Setters>
+            </VisualState>
+
+            <VisualState x:Name="Tablet">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="768" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                        <Setter Target="RelativePanelGridDetail.(Grid.Row)" Value="1"/>
+                        <Setter Target="RelativePanelGridDetail.(Grid.Column)" Value="0"/>
+                    </VisualState.Setters>
+            </VisualState>
+
+            <VisualState x:Name="Mobile">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="0" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                        <Setter Target="RelativePanelGridDetail.(Grid.Row)" Value="1"/>
+                        <Setter Target="RelativePanelGridDetail.(Grid.Column)" Value="0"/>
+                    </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    
         <ScrollViewer VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Disabled">
             <Grid Name="gridViewMain">
                 <Grid.ColumnDefinitions>
@@ -48,7 +82,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Name="imageDetail" Grid.Row="0" Grid.Column="0" Height="400" Width="400" />
-                <RelativePanel Grid.Row="0" Grid.Column="1">
+                <RelativePanel Name="RelativePanelGridDetail" Grid.Row="0" Grid.Column="1">
                     <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailName"
                                RelativePanel.AlignTopWithPanel="True"/>
                     <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailAddress"

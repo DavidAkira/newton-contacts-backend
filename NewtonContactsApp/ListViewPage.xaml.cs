@@ -31,13 +31,12 @@ namespace NewtonContactsApp
         {
             this.InitializeComponent();
             Contacts = MockContactsRepo.DbInstance.GetAll();
-
         }
 
-        private void ListViewPage_OnLoaded(object sender, RoutedEventArgs e)
-        {
+        //private void ListViewPage_OnLoaded(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void ListViewMaster_OnItemClick(object sender, ItemClickEventArgs e)
         {
@@ -53,6 +52,12 @@ namespace NewtonContactsApp
             txtblockDetailCountry.Text = clickedContact.Country;
             txtblockDetailPostalCode.Text = clickedContact.PostalCode;
 
+        }
+
+        private void BtnBack_OnClick(object sender, RoutedEventArgs e)
+        {
+            gridDetail.Visibility = Visibility.Collapsed;
+            listViewMaster.Visibility = Visibility.Visible;
         }
     }
 }
