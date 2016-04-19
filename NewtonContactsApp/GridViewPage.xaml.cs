@@ -57,13 +57,20 @@ namespace NewtonContactsApp
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             MockContactsRepo.DbInstance.Delete(currentContact);
+            gridViewDetail.Visibility = Visibility.Collapsed;
+            gridViewMain.Visibility = Visibility.Visible;
 
-            
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnBack_OnClick(object sender, RoutedEventArgs e)
+        {
+            gridViewDetail.Visibility = Visibility.Collapsed;
+            gridViewMain.Visibility = Visibility.Visible;
         }
     }
 }

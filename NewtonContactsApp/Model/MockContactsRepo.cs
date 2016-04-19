@@ -41,14 +41,14 @@ namespace NewtonContactsApp.Model
 
         public void Delete(int index)
         {
-            //if (contacts.Any(c => c.Index == index))
-            //{               
-            //    contacts.RemoveAll(c => c.Index == index);
-            //}
-            //else
+            if (contacts.Any(c => c.Index == index))
+            {
+                contacts.Remove(contacts.Where(c => c.Index == index).Single());
+            }else
             {
                 throw new ArgumentException($"No contact found with index {index}.");
             }
+        
         }
 
         public Contact Get(int index)

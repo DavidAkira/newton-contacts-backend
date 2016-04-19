@@ -26,7 +26,8 @@ namespace NewtonContactsApp
     /// </summary>
     public sealed partial class ListViewPage : Page
     {
-        public ObservableCollection<Contact> Contacts { get; set; } 
+        public ObservableCollection<Contact> Contacts { get; set; }
+        private int currentContact { get; set; }
         public ListViewPage()
         {
             this.InitializeComponent();
@@ -35,15 +36,19 @@ namespace NewtonContactsApp
 
         private void ListViewMaster_OnItemClick(object sender, ItemClickEventArgs e)
         {
+            Contact clickedContact = (Contact)e.ClickedItem;
+            currentContact = clickedContact.Index;
+
             gridDetail.Visibility = Visibility.Visible;
             if (VisualStateGroup.CurrentState == Mobile)
             {
                 listViewMaster.Visibility = Visibility.Collapsed;
                 gridDetail.Visibility = Visibility.Visible;
             }
-            var clickedContact = (Contact)e.ClickedItem;
+
             imageDetail.Source = new BitmapImage(
                 new Uri(clickedContact.AppData, UriKind.Absolute));
+
             txtblockDetailName.Text = clickedContact.Name;
             txtblockDetailAddress.Text = clickedContact.Address;
             txtblockDetailMail.Text = clickedContact.EmailAddress;
@@ -65,6 +70,21 @@ namespace NewtonContactsApp
         {
             listViewMaster.Visibility = Visibility.Visible;
             gridDetail.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Contact contact = new Contact();
+            
+            MockContactsRepo.DbInstance.Update(contact);
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MockContactsRepo.DbInstance.Delete(currentContact);
+            gridDetail.Visibility = Visibility.Collapsed;
+            listViewMaster.Visibility = Visibility.Visible;
         }
     }
 }

@@ -17,7 +17,7 @@
                         <AdaptiveTrigger MinWindowWidth="1200" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-
+                        <Setter Target="listViewMaster.(Visibility)" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -37,7 +37,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="listViewMaster.(Visibility)" Value="Collapsed" />
+                        <!--<Setter Target="listViewMaster.(Visibility)" Value="Collapsed" />-->
                         <Setter Target="RelativeInfoDetail.(Grid.Row)" Value="2" />
                         <Setter Target="RelativeInfoDetail.(Grid.Column)" Value="0" />
                         <Setter Target="btnBack.(Visibility)" Value="Visible" />
@@ -55,7 +55,7 @@
         </Grid.ColumnDefinitions>
         
 
-        <ListView Name="listViewMaster" ItemsSource="{x:Bind Contacts}" IsItemClickEnabled="True" ItemClick="ListViewMaster_OnItemClick">
+        <ListView MinWidth="500" Name="listViewMaster" ItemsSource="{x:Bind Contacts}" IsItemClickEnabled="True" ItemClick="ListViewMaster_OnItemClick">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:Contact">
                     <local:ListViewTemplate HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
@@ -96,9 +96,11 @@
                 <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailMail"
                            RelativePanel.Below="txtblockDetailPhone"
                            />
-                <Button Visibility="Collapsed" RelativePanel.Below="txtblockDetailMail" Name="btnBack" Background="#5A7B6C" FontFamily="Segoe MDL2 Assets" Content="&#xE0C4;" FontSize="24" Click="BtnBack_OnClick" />
-
-                
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal" RelativePanel.Below="txtblockDetailMail">
+                    <Button Visibility="Collapsed" Name="btnBack" Margin="8,0,0,0" Background="#5A7B6C" FontFamily="Segoe MDL2 Assets" Content="&#xE0C4;" FontSize="24" Click="BtnBack_OnClick" />
+                    <Button Name="btnRemove" Background="#5A7B6C" Margin="8,0,0,0" FontFamily="Segoe MDL2 Assets" Content="&#xE10A;" FontSize="24" Click="btnRemove_Click" />
+                    <Button Name="btnEdit" Background="#5A7B6C" Margin="8,0,0,0" FontFamily="Segoe MDL2 Assets" Content="&#xE104;" FontSize="24" Click="btnEdit_Click" />
+                </StackPanel>
             </RelativePanel>
            
         </Grid>
