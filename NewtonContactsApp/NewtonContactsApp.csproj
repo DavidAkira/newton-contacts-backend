@@ -101,11 +101,20 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetailPage.xaml.cs">
+      <DependentUpon>DetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridDetailTemplate.xaml.cs">
+      <DependentUpon>GridDetailTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GridViewPage.xaml.cs">
       <DependentUpon>GridViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListViewPage.xaml.cs">
       <DependentUpon>ListViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListViewTemplate.xaml.cs">
+      <DependentUpon>ListViewTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -140,11 +149,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridDetailTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GridViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ListViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListViewTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

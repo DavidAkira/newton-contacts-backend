@@ -55,17 +55,8 @@
                 <GridView Grid.Column="0" Grid.Row="0" ItemsSource="{x:Bind Contacts}" IsItemClickEnabled="True" ItemClick="gridViewMain_ItemClick">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="data:Contact">
-                            <StackPanel Padding="12" Orientation="Horizontal" Margin="8">
-                                <StackPanel Orientation="Vertical" Height="Auto" Width="Auto">
-                                    <Ellipse Height="100" Width="100">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="{x:Bind AppData}" />
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <TextBlock Name="txtblockGridDisplayName" Text="{x:Bind Name}" />
-                                    <TextBlock Name="txtblockGridDisplayEmail" Text="{x:Bind EmailAddress}" />
-                                </StackPanel>
-                            </StackPanel>
+                            <local:GridDetailTemplate HorizontalAlignment="Stretch" 
+                                                      VerticalAlignment="Stretch" />
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>

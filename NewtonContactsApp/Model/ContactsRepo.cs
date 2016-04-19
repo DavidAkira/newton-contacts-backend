@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,9 +29,9 @@ namespace NewtonContactsApp.Model
             throw new NotImplementedException();
         }
 
-        public IList<Contact> GetAll()
+        public ObservableCollection<Contact> GetAll()
         {
-            IList<Contact> contacts = new List<Contact>();
+            ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
 
             contacts.Add(
                 new Contact

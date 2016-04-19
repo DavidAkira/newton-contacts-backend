@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace NewtonContactsApp.Model
 
         private int numContactsToGenerate = 55;
         private int indexCounter = 1;
-        private List<Contact> contacts;
+        private ObservableCollection<Contact> contacts;
 
         private MockContactsRepo()
         {
@@ -40,11 +41,11 @@ namespace NewtonContactsApp.Model
 
         public void Delete(int index)
         {
-            if (contacts.Any(c => c.Index == index))
-            {
-                contacts.RemoveAll(c => c.Index == index);
-            }
-            else
+            //if (contacts.Any(c => c.Index == index))
+            //{               
+            //    contacts.RemoveAll(c => c.Index == index);
+            //}
+            //else
             {
                 throw new ArgumentException($"No contact found with index {index}.");
             }
@@ -55,9 +56,9 @@ namespace NewtonContactsApp.Model
             return contacts.FirstOrDefault(c => c.Index == index);
         }
 
-        public IList<Contact> GetAll()
+        public ObservableCollection<Contact> GetAll()
         {
-            return contacts.ToList();
+            return contacts;
         }
 
         public void SaveChanges()
@@ -71,7 +72,7 @@ namespace NewtonContactsApp.Model
             contacts.Add(contact);
         }
 
-        private List<Contact> CreateContacts()
+        private ObservableCollection<Contact> CreateContacts()
         {
             var addresses = new List<string>
             {
@@ -155,7 +156,7 @@ namespace NewtonContactsApp.Model
                 "https://c1.staticflickr.com/9/8086/8466271529_dc5c0a958f_z.jpg"
 
             };
-            var contactList = new List<Contact>();
+            var contactList = new ObservableCollection<Contact>();;
             Random rand = new Random();
             for (int i = 0; i < numContactsToGenerate; ++i)
             {

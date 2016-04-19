@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:NewtonContactsApp.Model"
+    Loaded="ListViewPage_OnLoaded"
     mc:Ignorable="d">
 
     <Grid Background="#FFFFF1"> 
@@ -57,15 +58,7 @@
         <ListView Name="listViewMaster" ItemsSource="{x:Bind Contacts}" IsItemClickEnabled="True" ItemClick="ListViewMaster_OnItemClick">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:Contact">
-                    <StackPanel Orientation="Horizontal" Margin="12,4,0,4">
-                        <Ellipse Width="45" Height="45">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="{x:Bind AppData}" />
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <TextBlock FontSize="20" Margin="16,0,0,0" Name="txtblockListName"  Text="{x:Bind Name}" />
-                        <TextBlock FontSize="20" Margin="16,0,0,0"  Name="txtblockListPhone" Text="{x:Bind PhoneNumber}"/>
-                    </StackPanel>
+                    <local:ListViewTemplate HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

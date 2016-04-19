@@ -1,6 +1,7 @@
 ﻿using NewtonContactsApp.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,7 +25,7 @@ namespace NewtonContactsApp
     /// </summary>
     public sealed partial class GridViewPage : Page
     {
-        private IList<Contact> Contacts { get; set; }
+        private ObservableCollection<Contact> Contacts { get; set; }
         private int currentContact { get; set; }
         public GridViewPage()
         {
@@ -34,7 +35,8 @@ namespace NewtonContactsApp
 
         private void gridViewMain_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Contact clickedContact = (Contact)e.ClickedItem;
+
+            Contact clickedContact = (Contact)e.ClickedItem; 
             currentContact = clickedContact.Index;
             imageDetail.Source = new BitmapImage(
             new Uri(clickedContact.AppData, UriKind.Absolute));
