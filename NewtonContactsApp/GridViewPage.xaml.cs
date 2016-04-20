@@ -26,7 +26,7 @@ namespace NewtonContactsApp
     public sealed partial class GridViewPage : Page
     {
         private ObservableCollection<Contact> Contacts { get; set; }
-        private int currentContact { get; set; }
+        private int currentContactIndex { get; set; }
         public GridViewPage()
         {
             this.InitializeComponent();
@@ -37,7 +37,7 @@ namespace NewtonContactsApp
         {
 
             Contact clickedContact = (Contact)e.ClickedItem; 
-            currentContact = clickedContact.Index;
+            currentContactIndex = clickedContact.Index;
             imageDetail.Source = new BitmapImage(
             new Uri(clickedContact.AppData, UriKind.Absolute));
 
@@ -56,7 +56,7 @@ namespace NewtonContactsApp
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            MockContactsRepo.DbInstance.Delete(currentContact);
+            MockContactsRepo.DbInstance.Delete(currentContactIndex);
             gridViewDetail.Visibility = Visibility.Collapsed;
             gridViewMain.Visibility = Visibility.Visible;
 
@@ -64,13 +64,63 @@ namespace NewtonContactsApp
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            OpenEdit();
         }
 
         private void BtnBack_OnClick(object sender, RoutedEventArgs e)
         {
             gridViewDetail.Visibility = Visibility.Collapsed;
             gridViewMain.Visibility = Visibility.Visible;
+        }
+
+        private void BtnSaveChanges_OnClick(object sender, RoutedEventArgs e)
+        {
+            Contact currentContact = MockContactsRepo.DbInstance.Get(currentContactIndex);
+            
+            Contact updateContact = new Contact
+            {
+                Index = currentContactIndex,
+                Name = TextBoxChangeName.Text,
+                Address = TextBoxChangeName.Text,
+                PostalCode = TextBoxChangePostalCode.Text,
+                City = TextBoxChangeCity.Text,
+                CareOf = TextBoxChangeCareOf.Text,
+                Country = TextBoxChangeCountry.Text,
+                PhoneNumber = TextBoxChangePhone.Text,
+                EmailAddress = TextBoxChangeMail.Text,
+                AppData = currentContact.AppData
+            };
+
+            MockContactsRepo.DbInstance.Update(updateContact);
+            CloseEdit();
+
+        }
+
+        private void CloseEdit()
+        {
+            TextBoxChangeName.Visibility = Visibility.Collapsed;
+            TextBoxChangeAddress.Visibility = Visibility.Collapsed;
+            TextBoxChangePostalCode.Visibility = Visibility.Collapsed;
+            TextBoxChangeCity.Visibility = Visibility.Collapsed;
+            TextBoxChangeCareOf.Visibility = Visibility.Collapsed;
+            TextBoxChangeCountry.Visibility = Visibility.Collapsed;
+            TextBoxChangePhone.Visibility = Visibility.Collapsed;
+            TextBoxChangeMail.Visibility = Visibility.Collapsed;
+            btnSaveChanges.Visibility = Visibility.Collapsed;
+            
+        }
+
+        private void OpenEdit()
+        {
+            TextBoxChangeName.Visibility = Visibility.Visible;
+            TextBoxChangeAddress.Visibility = Visibility.Visible;
+            TextBoxChangePostalCode.Visibility = Visibility.Visible;
+            TextBoxChangeCity.Visibility = Visibility.Visible;
+            TextBoxChangeCareOf.Visibility = Visibility.Visible;
+            TextBoxChangeCountry.Visibility = Visibility.Visible;
+            TextBoxChangePhone.Visibility = Visibility.Visible;
+            TextBoxChangeMail.Visibility = Visibility.Visible;
+            btnSaveChanges.Visibility = Visibility.Visible;
         }
     }
 }

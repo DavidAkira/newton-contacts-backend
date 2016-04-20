@@ -98,10 +98,20 @@
                 <TextBlock FontSize="20" Margin="16,12,0,0" Name="txtblockDetailMail"
                                RelativePanel.Below="txtblockDetailPhone"
                                />
+                <TextBox Visibility="Collapsed" Name="TextBoxChangeName"  FontSize="20" Margin="16,0,0,0" RelativePanel.RightOf="txtblockDetailName" RelativePanel.AlignVerticalCenterWith="txtblockDetailName" PlaceholderText="New Name"  />
+                <TextBox Name="TextBoxChangeAddress" Visibility="Collapsed" FontSize="20" Margin="16,4,0,0" RelativePanel.RightOf="txtblockDetailAddress" RelativePanel.AlignVerticalCenterWith="txtblockDetailAddress" PlaceholderText="New Address"  />
+                <TextBox Name="TextBoxChangePostalCode" Visibility="Collapsed" FontSize="20" Margin="16,4,0,0" RelativePanel.RightOf="txtblockDetailCity" RelativePanel.AlignVerticalCenterWith="txtblockDetailPostalCode" PlaceholderText="New Zip Code"  />
+                <TextBox Name="TextBoxChangeCity" Visibility="Collapsed" FontSize="20" Margin="16,4,0,0" RelativePanel.RightOf="TextBoxChangePostalCode" RelativePanel.AlignVerticalCenterWith="txtblockDetailCity" PlaceholderText="New City"  />
+                <TextBox Name="TextBoxChangeCareOf" Visibility="Collapsed" FontSize="20" Margin="16,4,0,0" RelativePanel.RightOf="txtblockDetailCareOf" RelativePanel.AlignVerticalCenterWith="txtblockDetailCareOf" PlaceholderText="New Care of"  />
+                <TextBox Name="TextBoxChangeCountry" Visibility="Collapsed" FontSize="20" Margin="16,4,0,0" RelativePanel.RightOf="txtblockDetailCountry" RelativePanel.AlignVerticalCenterWith="txtblockDetailCountry" PlaceholderText="New Country"  />
+                <TextBox Name="TextBoxChangePhone" Visibility="Collapsed" FontSize="20" Margin="16,4,0,0" RelativePanel.RightOf="txtblockDetailPhone" RelativePanel.AlignVerticalCenterWith="txtblockDetailPhone" PlaceholderText="New phone"  />
+                <TextBox Name="TextBoxChangeMail" Visibility="Collapsed" FontSize="20" Margin="16,4,0,0" RelativePanel.RightOf="txtblockDetailMail" RelativePanel.AlignVerticalCenterWith="txtblockDetailMail" PlaceholderText="New email"  />
+                
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal" RelativePanel.Below="txtblockDetailMail">
                     <Button Name="btnBack" Background="#5A7B6C" Margin="8,0,0,0" FontFamily="Segoe MDL2 Assets" Content="&#xE0C4;" FontSize="24" Click="BtnBack_OnClick" />
                     <Button Name="btnRemove" Background="#5A7B6C" Margin="8,0,0,0" FontFamily="Segoe MDL2 Assets" Content="&#xE10A;" FontSize="24" Click="btnRemove_Click" />
                     <Button Name="btnEdit" Background="#5A7B6C" Margin="8,0,0,0" FontFamily="Segoe MDL2 Assets" Content="&#xE104;" FontSize="24" Click="btnEdit_Click" />
+                    <Button Name="btnSaveChanges" Visibility="Collapsed" Background="#5A7B6C" Margin="8,0,0,0" FontFamily="Segoe MDL2 Assets" Content="&#xE105;" FontSize="24" Click="BtnSaveChanges_OnClick" />
                 </StackPanel>
             </RelativePanel>
         </Grid>
