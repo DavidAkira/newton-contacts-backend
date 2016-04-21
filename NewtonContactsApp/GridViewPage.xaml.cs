@@ -101,8 +101,10 @@ namespace NewtonContactsApp
             };
 
             MockContactsRepo.DbInstance.Update(updateContact);
+            Contact updatedUser = MockContactsRepo.DbInstance.Get(currentContactIndex);
+            txtblockDetailName.Text = updatedUser.Name;
             CloseEdit();
-
+            
         }
 
         private void CloseEdit()
