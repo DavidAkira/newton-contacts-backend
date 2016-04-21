@@ -35,7 +35,6 @@ namespace NewtonContactsApp
 
         private void gridViewMain_ItemClick(object sender, ItemClickEventArgs e)
         {
-
             Contact clickedContact = (Contact)e.ClickedItem; 
             currentContactIndex = clickedContact.Index;
             imageDetail.Source = new BitmapImage(
@@ -59,29 +58,39 @@ namespace NewtonContactsApp
             MockContactsRepo.DbInstance.Delete(currentContactIndex);
             gridViewDetail.Visibility = Visibility.Collapsed;
             gridViewMain.Visibility = Visibility.Visible;
+            CloseEdit();
 
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            Contact currentContact = MockContactsRepo.DbInstance.Get(currentContactIndex);
             OpenEdit();
+            TextBoxChangeName.Text = currentContact.Name;
+            TextBoxChangeAddress.Text = currentContact.Address;
+            TextBoxChangeCity.Text = currentContact.City;
+            TextBoxChangePostalCode.Text = currentContact.PostalCode;
+            TextBoxChangeCareOf.Text = currentContact.CareOf;
+            TextBoxChangeMail.Text = currentContact.EmailAddress;
+            TextBoxChangePhone.Text = currentContact.PhoneNumber;
+            TextBoxChangeCountry.Text = currentContact.Country;
         }
 
         private void BtnBack_OnClick(object sender, RoutedEventArgs e)
         {
             gridViewDetail.Visibility = Visibility.Collapsed;
             gridViewMain.Visibility = Visibility.Visible;
+            CloseEdit();
         }
 
         private void BtnSaveChanges_OnClick(object sender, RoutedEventArgs e)
         {
-            Contact currentContact = MockContactsRepo.DbInstance.Get(currentContactIndex);
-            
+            Contact currentContact = MockContactsRepo.DbInstance.Get(currentContactIndex);          
             Contact updateContact = new Contact
             {
                 Index = currentContactIndex,
                 Name = TextBoxChangeName.Text,
-                Address = TextBoxChangeName.Text,
+                Address = TextBoxChangeAddress.Text,
                 PostalCode = TextBoxChangePostalCode.Text,
                 City = TextBoxChangeCity.Text,
                 CareOf = TextBoxChangeCareOf.Text,

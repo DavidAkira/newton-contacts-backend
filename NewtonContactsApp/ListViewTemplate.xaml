@@ -54,7 +54,6 @@
         </Ellipse>
         <TextBlock FontSize="20" Margin="16,0,0,0"  Name="txtblockListName"  Text="{x:Bind Contact.Name}" />
         <TextBlock FontSize="20" Margin="16,0,0,0"  Name="txtblockListPhone" Text="{x:Bind Contact.PhoneNumber}"/>
-        <TextBlock FontSize="20" Margin="16,0,0,0"  Name="txtblockListMail" Text="{x:Bind Contact.EmailAddress}"/>
         <TextBlock FontSize="20" Margin="16,0,0,0"  Name="txtblockListCity" Text="{x:Bind Contact.City}"/>
     </StackPanel>
 
