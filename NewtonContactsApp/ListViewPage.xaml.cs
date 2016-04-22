@@ -27,17 +27,24 @@ namespace NewtonContactsApp
     public sealed partial class ListViewPage : Page
     {
         public ObservableCollection<Contact> Contacts { get; set; }
-        private int currentContact { get; set; }
+        private int CurrentContactIndex { get; set; }
         public ListViewPage()
         {
             this.InitializeComponent();
-            Contacts = MockContactsRepo.DbInstance.GetAll();
+            if (MainPage.FilteredContacts == null)
+            {
+                Contacts = MockContactsRepo.DbInstance.GetAll();                
+            }
+            else
+            {
+                Contacts = MainPage.FilteredContacts;
+            }
         }
 
         private void ListViewMaster_OnItemClick(object sender, ItemClickEventArgs e)
         {
             Contact clickedContact = (Contact)e.ClickedItem;
-            currentContact = clickedContact.Index;
+            CurrentContactIndex = clickedContact.Index;
 
             gridDetail.Visibility = Visibility.Visible;
             if (VisualStateGroup.CurrentState == Mobile)
@@ -57,13 +64,14 @@ namespace NewtonContactsApp
             txtblockDetailCity.Text = clickedContact.City;
             txtblockDetailCountry.Text = clickedContact.Country;
             txtblockDetailPostalCode.Text = clickedContact.PostalCode;
-
+            CloseEdit();
         }
 
         private void BtnBack_OnClick(object sender, RoutedEventArgs e)
         {
             gridDetail.Visibility = Visibility.Collapsed;
             listViewMaster.Visibility = Visibility.Visible;
+            CloseEdit();
         }
 
         private void ListViewPage_OnLoaded(object sender, RoutedEventArgs e)
@@ -74,17 +82,82 @@ namespace NewtonContactsApp
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            Contact contact = new Contact();
-            
-            MockContactsRepo.DbInstance.Update(contact);
+            Contact currentContact = MockContactsRepo.DbInstance.Get(CurrentContactIndex);
+            OpenEdit();
+            TextBoxChangeName.Text = currentContact.Name;
+            TextBoxChangeAddress.Text = currentContact.Address;
+            TextBoxChangeCity.Text = currentContact.City;
+            TextBoxChangePostalCode.Text = currentContact.PostalCode;
+            TextBoxChangeCareOf.Text = currentContact.CareOf;
+            TextBoxChangeMail.Text = currentContact.EmailAddress;
+            TextBoxChangePhone.Text = currentContact.PhoneNumber;
+            TextBoxChangeCountry.Text = currentContact.Country;
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             
-            MockContactsRepo.DbInstance.Delete(currentContact);
+            MockContactsRepo.DbInstance.Delete(CurrentContactIndex);
             gridDetail.Visibility = Visibility.Collapsed;
             listViewMaster.Visibility = Visibility.Visible;
+        }
+        private void OpenEdit()
+        {
+            TextBoxChangeName.Visibility = Visibility.Visible;
+            TextBoxChangeAddress.Visibility = Visibility.Visible;
+            TextBoxChangePostalCode.Visibility = Visibility.Visible;
+            TextBoxChangeCity.Visibility = Visibility.Visible;
+            TextBoxChangeCareOf.Visibility = Visibility.Visible;
+            TextBoxChangeCountry.Visibility = Visibility.Visible;
+            TextBoxChangePhone.Visibility = Visibility.Visible;
+            TextBoxChangeMail.Visibility = Visibility.Visible;
+            btnSaveChanges.Visibility = Visibility.Visible;
+        }
+        private void CloseEdit()
+        {
+            TextBoxChangeName.Visibility = Visibility.Collapsed;
+            TextBoxChangeAddress.Visibility = Visibility.Collapsed;
+            TextBoxChangePostalCode.Visibility = Visibility.Collapsed;
+            TextBoxChangeCity.Visibility = Visibility.Collapsed;
+            TextBoxChangeCareOf.Visibility = Visibility.Collapsed;
+            TextBoxChangeCountry.Visibility = Visibility.Collapsed;
+            TextBoxChangePhone.Visibility = Visibility.Collapsed;
+            TextBoxChangeMail.Visibility = Visibility.Collapsed;
+            btnSaveChanges.Visibility = Visibility.Collapsed;
+
+        }
+        private void UpdateUserTextboxes()
+        {
+            Contact updatedUser = MockContactsRepo.DbInstance.Get(CurrentContactIndex);
+            txtblockDetailName.Text = updatedUser.Name;
+            txtblockDetailAddress.Text = updatedUser.Address;
+            txtblockDetailCareOf.Text = updatedUser.CareOf;
+            txtblockDetailCity.Text = updatedUser.City;
+            txtblockDetailPostalCode.Text = updatedUser.PostalCode;
+            txtblockDetailCountry.Text = updatedUser.Country;
+            txtblockDetailMail.Text = updatedUser.EmailAddress;
+            txtblockDetailPhone.Text = updatedUser.PhoneNumber;
+        }
+
+        private void BtnSaveChanges_OnClick(object sender, RoutedEventArgs e)
+        {
+            Contact currentContact = MockContactsRepo.DbInstance.Get(CurrentContactIndex);
+            Contact updatedContact = new Contact
+            {
+                Index = CurrentContactIndex,
+                Name = TextBoxChangeName.Text,
+                Address = TextBoxChangeAddress.Text,
+                PostalCode = TextBoxChangePostalCode.Text,
+                City = TextBoxChangeCity.Text,
+                CareOf = TextBoxChangeCareOf.Text,
+                Country = TextBoxChangeCountry.Text,
+                PhoneNumber = TextBoxChangePhone.Text,
+                EmailAddress = TextBoxChangeMail.Text,
+                AppData = currentContact.AppData
+            };
+            MockContactsRepo.DbInstance.Update(updatedContact);
+            UpdateUserTextboxes();
+            CloseEdit();
         }
     }
 }

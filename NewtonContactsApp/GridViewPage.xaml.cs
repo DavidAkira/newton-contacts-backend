@@ -25,8 +25,8 @@ namespace NewtonContactsApp
     /// </summary>
     public sealed partial class GridViewPage : Page
     {
-        private ObservableCollection<Contact> Contacts { get; set; }
-        private int currentContactIndex { get; set; }
+        private ObservableCollection<Contact> Contacts { get; }
+        private int CurrentContactIndex { get; set; }
         public GridViewPage()
         {
             this.InitializeComponent();
@@ -36,10 +36,10 @@ namespace NewtonContactsApp
         private void gridViewMain_ItemClick(object sender, ItemClickEventArgs e)
         {
             Contact clickedContact = (Contact)e.ClickedItem; 
-            currentContactIndex = clickedContact.Index;
+            CurrentContactIndex = clickedContact.Index;
             imageDetail.Source = new BitmapImage(
             new Uri(clickedContact.AppData, UriKind.Absolute));
-
+            
             gridViewMain.Visibility = Visibility.Collapsed;
             gridViewDetail.Visibility = Visibility.Visible;
 
@@ -55,7 +55,7 @@ namespace NewtonContactsApp
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            MockContactsRepo.DbInstance.Delete(currentContactIndex);
+            MockContactsRepo.DbInstance.Delete(CurrentContactIndex);
             gridViewDetail.Visibility = Visibility.Collapsed;
             gridViewMain.Visibility = Visibility.Visible;
             CloseEdit();
@@ -64,7 +64,7 @@ namespace NewtonContactsApp
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            Contact currentContact = MockContactsRepo.DbInstance.Get(currentContactIndex);
+            Contact currentContact = MockContactsRepo.DbInstance.Get(CurrentContactIndex);
             OpenEdit();
             TextBoxChangeName.Text = currentContact.Name;
             TextBoxChangeAddress.Text = currentContact.Address;
@@ -85,10 +85,10 @@ namespace NewtonContactsApp
 
         private void BtnSaveChanges_OnClick(object sender, RoutedEventArgs e)
         {
-            Contact currentContact = MockContactsRepo.DbInstance.Get(currentContactIndex);          
-            Contact updateContact = new Contact
+            Contact currentContact = MockContactsRepo.DbInstance.Get(CurrentContactIndex);          
+            Contact updatedContact = new Contact
             {
-                Index = currentContactIndex,
+                Index = CurrentContactIndex,
                 Name = TextBoxChangeName.Text,
                 Address = TextBoxChangeAddress.Text,
                 PostalCode = TextBoxChangePostalCode.Text,
@@ -99,12 +99,23 @@ namespace NewtonContactsApp
                 EmailAddress = TextBoxChangeMail.Text,
                 AppData = currentContact.AppData
             };
-
-            MockContactsRepo.DbInstance.Update(updateContact);
-            Contact updatedUser = MockContactsRepo.DbInstance.Get(currentContactIndex);
-            txtblockDetailName.Text = updatedUser.Name;
+            MockContactsRepo.DbInstance.Update(updatedContact);
+            UpdateUserTextboxes();
             CloseEdit();
             
+        }
+
+        private void UpdateUserTextboxes()
+        {
+            Contact updatedUser = MockContactsRepo.DbInstance.Get(CurrentContactIndex);
+            txtblockDetailName.Text = updatedUser.Name;
+            txtblockDetailAddress.Text = updatedUser.Address;
+            txtblockDetailCareOf.Text = updatedUser.CareOf;
+            txtblockDetailCity.Text = updatedUser.City;
+            txtblockDetailPostalCode.Text = updatedUser.PostalCode;
+            txtblockDetailCountry.Text = updatedUser.Country;
+            txtblockDetailMail.Text = updatedUser.EmailAddress;
+            txtblockDetailPhone.Text = updatedUser.PhoneNumber;
         }
 
         private void CloseEdit()

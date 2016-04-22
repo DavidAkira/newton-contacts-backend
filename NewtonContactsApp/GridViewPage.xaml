@@ -17,7 +17,7 @@
                     <AdaptiveTrigger MinWindowWidth="1200" />
                 </VisualState.StateTriggers>
                 <VisualState.Setters>
-
+                    
                 </VisualState.Setters>
             </VisualState>
 
@@ -62,8 +62,6 @@
                 </GridView>
             </Grid>
         </ScrollViewer>
-        
-        
         
         <Grid Visibility="Collapsed" Name="gridViewDetail" Margin="20,0,0,0" Grid.Column="1" Grid.Row="0">
                 <Grid.RowDefinitions>

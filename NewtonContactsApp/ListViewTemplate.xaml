@@ -18,7 +18,9 @@
                         <AdaptiveTrigger MinWindowWidth="1200" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--<Setter Target="" Value="" />-->
+                        <Setter Target="txtblockListName.(Visibility)" Value="Visible" />
+                        <Setter Target="txtblockListCity.(Visibility)" Value="Visible" />
+                        <Setter Target="txtblockListPhone.(Visibility)" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -27,7 +29,6 @@
                         <AdaptiveTrigger MinWindowWidth="768" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="txtblockListMail.(Visibility)" Value="Collapsed" />
                         <Setter Target="txtblockListCity.(Visibility)" Value="Collapsed" />
                         <Setter Target="txtblockListPhone.(Visibility)" Value="Collapsed" />
                         
@@ -39,7 +40,6 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="txtblockListMail.(Visibility)" Value="Collapsed" />
                         <Setter Target="txtblockListCity.(Visibility)" Value="Collapsed" />
                         <Setter Target="txtblockListPhone.(Visibility)" Value="Collapsed" />
                         <Setter Target="txtblockListName.(FontSize)" Value="24" />

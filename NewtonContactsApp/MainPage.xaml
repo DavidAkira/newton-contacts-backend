@@ -48,7 +48,6 @@
         </Grid.RowDefinitions>
         <RelativePanel Width="Auto" Background="#5A7B6C">
             <Button Visibility="Visible" Name="btnHamburger" Background="#5A7B6C" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="24" Click="BtnHamburger_OnClick" />
-            <!--<Button Name="btnBack" Background="#5A7B6C" RelativePanel.RightOf="btnHamburger" FontFamily="Segoe MDL2 Assets" Content="&#xE0C4;" FontSize="24" Click="BtnBack_OnClick"/>-->
             <TextBox Name="txtboxSearch" Width="150" FontSize="18" RelativePanel.LeftOf="btnSearch" PlaceholderText="Search"></TextBox>
             <Button Name="btnSearch" Background="#5A7B6C" RelativePanel.AlignRightWithPanel="True" FontFamily="Segoe MDL2 Assets" Content="&#xE11A;" FontSize="24" Click="BtnSearch_OnClick" />
         </RelativePanel>

@@ -151,9 +151,8 @@ namespace NewtonContactsApp.Model
             };
             var appdata = new List<string>
             {
-                "http://cdn.collider.com/wp-content/uploads/Venom-4.jpg",
-                "https://pbs.twimg.com/profile_images/577915663781482496/28tCoxPH.jpeg",
-                "https://c1.staticflickr.com/9/8086/8466271529_dc5c0a958f_z.jpg"
+                "ms-appx://NewtonContactsApp/Assets/defaultgreen.png",
+                "ms-appx://NewtonContactsApp/Assets/default.jpg"
 
             };
             var contactList = new ObservableCollection<Contact>();;

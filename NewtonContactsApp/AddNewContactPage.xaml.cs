@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Imaging;
+using Windows.Networking.Sockets;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using NewtonContactsApp.Model;
 
@@ -23,6 +30,7 @@ namespace NewtonContactsApp
     /// </summary>
     public sealed partial class AddNewContactPage : Page
     {
+        public StorageFile ImageFile { get; set; }
         public AddNewContactPage()
         {
             this.InitializeComponent();
@@ -51,11 +59,33 @@ namespace NewtonContactsApp
                 EmailAddress = txtboxMail.Text,
                 PhoneNumber = txtboxPhone.Text,
                 PostalCode = txtboxPostalCode.Text,
-                AppData = "http://images.fun.com/products/20244/1-1/spider-man-masks-pack-of-8.jpg"
-
-            };
-            int returnedId = MockContactsRepo.DbInstance.Create(newContact);
-            txtReturnedvalue.Text = returnedId.ToString();
+                AppData = "ms-appx://NewtonContactsApp/Assets/default.jpg"
+            };      
+            MockContactsRepo.DbInstance.Create(newContact);
         }
+
+        private async void BtnAddPicture_OnClick(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker opener = new FileOpenPicker();
+            opener.ViewMode = PickerViewMode.Thumbnail;
+            opener.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            opener.CommitButtonText = "Select a picture";
+            opener.FileTypeFilter.Add(".jpg");
+            opener.FileTypeFilter.Add(".png");
+            StorageFile file = await opener.PickSingleFileAsync();
+            if (file != null)
+            {
+                await file.CopyAsync(ApplicationData.Current.LocalFolder, file.Name, NameCollisionOption.GenerateUniqueName);
+                var stream = await file.OpenAsync(FileAccessMode.Read);
+                var bitmapImage = new BitmapImage();
+                await bitmapImage.SetSourceAsync(stream);     
+
+                imgDisplay.Source = bitmapImage;
+                //addImage = bitmapImage;
+                //txtDisplay.Text = bitmapImage.UriSource.ToString();  
+            }
+        }
+
+
     }
 }
