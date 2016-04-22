@@ -35,6 +35,7 @@ namespace NewtonContactsApp
 
         private void gridViewMain_ItemClick(object sender, ItemClickEventArgs e)
         {
+            //Loads the detail view with info
             Contact clickedContact = (Contact)e.ClickedItem; 
             CurrentContactIndex = clickedContact.Index;
             imageDetail.Source = new BitmapImage(
@@ -59,7 +60,6 @@ namespace NewtonContactsApp
             gridViewDetail.Visibility = Visibility.Collapsed;
             gridViewMain.Visibility = Visibility.Visible;
             CloseEdit();
-
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)

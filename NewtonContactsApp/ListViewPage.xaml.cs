@@ -156,7 +156,7 @@ namespace NewtonContactsApp
                 AppData = currentContact.AppData
             };
             MockContactsRepo.DbInstance.Update(updatedContact);
-            UpdateUserTextboxes();
+            UpdateUserTextboxes(); //Re-adding the data so the information gets refreshed
             CloseEdit();
         }
     }

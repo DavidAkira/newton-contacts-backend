@@ -36,9 +36,8 @@
                 <Button Background="#5A7B6C" Name="btnAddPicture" FontFamily="Segoe MDL2 Assets" Content="&#xE114;" FontSize="24" Click="BtnAddPicture_OnClick"/>
                 <Button Background="#5A7B6C" Margin="10,0,0,0" Name="btnAddNewPerson" FontFamily="Segoe MDL2 Assets" Content="&#xE105;" FontSize="24" Click="BtnAddNewPerson_OnClick"/>
                 <Button Background="#5A7B6C" Margin="10,0,0,0" Name="btnClear" FontFamily="Segoe MDL2 Assets" Content="&#xE10A;" FontSize="24" Click="BtnClear_OnClick"/>
+            <Image Margin="30,0,0,0" Name="imgDisplay" Visibility="Visible" Height="150" Width="150" />
             </StackPanel>
-            <Image Name="imgDisplay" Visibility="Visible" Height="200" Width="200" />
-            <TextBlock Name="txtDisplay" FontSize="30" />
         </StackPanel>
     </Grid>
 </Page>

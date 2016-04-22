@@ -21,8 +21,8 @@ namespace NewtonContactsApp.Model
         }
 
         public static MockContactsRepo DbInstance
-        {
-            get
+        { 
+            get //Singleton to ensure only one copy of the repository
             {
                 if (dbInstance == null)
                 {
